@@ -1,12 +1,12 @@
 {
-  "name": "ejs-challenge",
+  "name": "blog",
   "version": "1.0.0",
   "description": "",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
+  "author": "Abdulhameed",
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.18.3",
