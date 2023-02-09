@@ -1,8 +1,5 @@
 //    jshint esversion:6
-
 const express = require('express')
-const bodyParser = require('body-parser')
-
 /* eslint-disable no-unused-vars */
 const ejs = require('ejs')
 
@@ -14,8 +11,12 @@ const app = express()
 
 app.set('view engine', 'ejs')
 
-app.use(bodyParser.urlencoded({ extended: true }))
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }))
 app.use(express.static('public'))
+
+app.use(express.json());
+
 
 app.get('/', (req, res) => {
   res.render('home', { homeContent: homeStartingContent })
@@ -29,6 +30,14 @@ app.get('/contact', (req, res) => {
   res.render('contact', { contactContent: contactContent })
 })
 
+app.get('/compose', (req, res) => {
+  res.render('compose')
+})
+
+app.post("/compose", (req, res)=>{
+  const newPost = req.body.addPost
+  console.log(newPost)
+})
 app.listen(3000, function () {
   console.log('Server started on port 3000')
 })
