@@ -1,4 +1,13 @@
 <form action="/compose" method="POST">
-    <input type="text" name="addPost" id="">
-    <button name="submitPost">Publish</button>
-</form>
+    <div class="form-group">
+      <label for="postTile">Title</label>
+      <input type="text" class="form-control" name="postTitle" placeholder="Enter  Title" autofocus required>
+    </div>
+
+    <div class="form-group">
+      <label for="postContent">Post</label>
+      <textarea class="form-control" name="postContent" rows="3" autofocus required></textarea>
+    </div>
+
+    <button type="submit" class="btn btn-default">Publish</button>
+  </form>
