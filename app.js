@@ -34,11 +34,12 @@ app.get('/compose', (req, res) => {
   res.render('compose')
 })
 
+app.get('/login', (req, res) => {
+  res.render('login')
+})
+
 app.post("/compose", (req, res)=>{
-  const newPostTitle = req.body.postTitle
-  const newPostContent = req.body.postContent
-  console.log(newPostTitle)
-  console.log(newPostContent)
+  res.render("compose")
 })
 
 app.listen(3000, function () {
