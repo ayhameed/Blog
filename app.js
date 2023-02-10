@@ -21,7 +21,7 @@ const posts = []
 
 app.get('/', (req, res) => {
   
-  res.render('home', { homeContent: homeStartingContent, post: posts})
+  res.render('home', { homeContent: homeStartingContent, posts: posts})
 })
 
 app.get('/about', (req, res) => {

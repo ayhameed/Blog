@@ -4,14 +4,11 @@
     <p>
         <%= homeContent %>
     </p>
-    <div class="">
-        <% for(var i=0; i<post.length; i++){ %>
-            <% JSON.stringify(post) %>
+        <% posts.forEach((post)=>{ %>
                <div class="postStyle">
-                    <h3><%= post[i].title %></h3>
-                    <p><%= post[i].content %></p>
+                    <h3><%= post.title %></h3>
+                    <p><%= post.content %></p>
                </div>
-        <% } %>
-    <div></div>
+        <% }) %>
 </body>
 <%- include('partials/footer.ejs') %>
