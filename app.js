@@ -11,35 +11,42 @@ const app = express()
 
 app.set('view engine', 'ejs')
 
-app.use(express.json());
+app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 app.use(express.static('public'))
 
-app.use(express.json());
+app.use(express.json())
 
+let postTitle, postContent
+const posts = []
 
 app.get('/', (req, res) => {
   res.render('home', { homeContent: homeStartingContent })
 })
 
 app.get('/about', (req, res) => {
-  res.render('about', { aboutContent: aboutContent })
+  res.render('about', { aboutContent })
 })
 
 app.get('/contact', (req, res) => {
-  res.render('contact', { contactContent: contactContent })
+  res.render('contact', { contactContent })
 })
 
 app.get('/compose', (req, res) => {
   res.render('compose')
 })
 
-app.get('/login', (req, res) => {
-  res.render('login')
-})
+app.post('/compose', (req, res) => {
+  postTitle = req.body.postTitle
+  postContent = req.body.postContent
 
-app.post("/compose", (req, res)=>{
-  res.render("compose")
+  const postObj = {
+    "title":postTitle,
+    "content":postContent
+  }
+  
+  posts.push(postObj)
+  console.log(posts)
 })
 
 app.listen(3000, function () {
