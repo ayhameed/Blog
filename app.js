@@ -44,9 +44,9 @@ app.post('/compose', (req, res) => {
     "title":postTitle,
     "content":postContent
   }
-  
   posts.push(postObj)
   console.log(posts)
+  res.redirect('/')
 })
 
 app.listen(3000, function () {
