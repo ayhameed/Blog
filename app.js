@@ -17,11 +17,11 @@ app.use(express.static('public'))
 
 app.use(express.json())
 
-let postTitle, postContent
 const posts = []
 
 app.get('/', (req, res) => {
-  res.render('home', { homeContent: homeStartingContent })
+  
+  res.render('home', { homeContent: homeStartingContent, post: posts})
 })
 
 app.get('/about', (req, res) => {
@@ -45,7 +45,6 @@ app.post('/compose', (req, res) => {
     "content":postContent
   }
   posts.push(postObj)
-  console.log(posts)
   res.redirect('/')
 })
 

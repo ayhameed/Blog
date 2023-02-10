@@ -4,5 +4,14 @@
     <p>
         <%= homeContent %>
     </p>
+    <div class="">
+        <% for(var i=0; i<post.length; i++){ %>
+            <% JSON.stringify(post) %>
+               <div class="postStyle">
+                    <h3><%= post[i].title %></h3>
+                    <p><%= post[i].content %></p>
+               </div>
+        <% } %>
+    <div></div>
 </body>
 <%- include('partials/footer.ejs') %>
