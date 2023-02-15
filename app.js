@@ -68,15 +68,21 @@ app.post('/compose', (req, res) => {
 // method to set up routes
 app.get('/posts/:postID', (req, res) => {
   let postTitle = req.params.postID
-
+  let postContent = ''
   let title = ''
   
   posts.forEach((post) => {
     title = post.title
+    content = post.content
   })
 
   if (_.toLower(postTitle) == _.toLower(title)) {
-    console.log("Match Found!")
+    res.render(
+      'post', 
+      {
+        title,
+        content
+      })
   }
 })
 

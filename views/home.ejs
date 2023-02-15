@@ -7,7 +7,12 @@
         <% posts.forEach((post)=>{ %>
                <div class="postStyle">
                     <h3><%= post.title %></h3>
-                    <p><%= post.content %></p>
+                    <p>
+                        <% var shortText = post.content %>
+                        <% truncShortText = shortText.substring(0, 150) %>
+                        <%= truncShortText %>
+                    </p>
+                    <a href="posts/<%= post.title %>">Read More</a>
                </div>
         <% }) %>
 </body>
