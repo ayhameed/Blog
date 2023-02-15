@@ -20,8 +20,7 @@ app.use(express.json())
 const posts = []
 
 app.get('/', (req, res) => {
-  
-  res.render('home', { homeContent: homeStartingContent, posts: posts})
+  res.render('home', { homeContent: homeStartingContent, posts })
 })
 
 app.get('/about', (req, res) => {
@@ -37,17 +36,17 @@ app.get('/compose', (req, res) => {
 })
 
 app.post('/compose', (req, res) => {
-  postTitle = req.body.postTitle
-  postContent = req.body.postContent
-
+  const postTitle = req.body.postTitle
+  const postContent = req.body.postContent
   const postObj = {
-    "title":postTitle,
-    "content":postContent
+    title: postTitle,
+    content: postContent
   }
   posts.push(postObj)
   res.redirect('/')
+  console.log(posts)
 })
 
-app.listen(3000, function () {
+app.listen(3000, ()=> {
   console.log('Server started on port 3000')
 })
