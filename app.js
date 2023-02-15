@@ -19,22 +19,37 @@ app.use(express.json())
 
 const posts = []
 
+//root route method , rendering posts[] on home page
 app.get('/', (req, res) => {
-  res.render('home', { homeContent: homeStartingContent, posts })
+  res.render('home', 
+  { 
+    homeContent: homeStartingContent, 
+    posts 
+  })
 })
 
+//about route, with some static contents 
 app.get('/about', (req, res) => {
-  res.render('about', { aboutContent })
+  res.render('about', 
+    { 
+      aboutContent
+    })
 })
 
+//contact route with static content
 app.get('/contact', (req, res) => {
-  res.render('contact', { contactContent })
+  res.render('contact', 
+  { 
+    contactContent 
+  })
 })
 
+//compose route 
 app.get('/compose', (req, res) => {
   res.render('compose')
 })
 
+//composes post method that accepts inputs, processes it with body-parser and stores an sn object in the post array
 app.post('/compose', (req, res) => {
   const postTitle = req.body.postTitle
   const postContent = req.body.postContent
@@ -44,9 +59,23 @@ app.post('/compose', (req, res) => {
   }
   posts.push(postObj)
   res.redirect('/')
-  console.log(posts)
 })
 
+// method to set up routes
+app.get('/posts/:postID', (req, res) => {
+  let postTitle = req.params.postID
+
+  let title = ''
+  posts.forEach((post) =>{
+    title = post.title
+  })
+
+  if (postTitle == title){
+    console.log("Match Found!")
+  }
+})
+
+// app .listen
 app.listen(3000, ()=> {
   console.log('Server started on port 3000')
 })
