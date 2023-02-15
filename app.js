@@ -1,7 +1,11 @@
 //    jshint esversion:6
 const express = require('express')
+
 /* eslint-disable no-unused-vars */
 const ejs = require('ejs')
+
+//load lodash
+var _ = require('lodash');
 
 const homeStartingContent = 'Lacus vel facilisis volutpat est velit egestas dui id ornare. Semper auctor neque vitae tempus quam. Sit amet cursus sit amet dictum sit amet justo. Viverra tellus in hac habitasse. Imperdiet proin fermentum leo vel orci porta. Donec ultrices tincidunt arcu non sodales neque sodales ut. Mattis molestie a iaculis at erat pellentesque adipiscing. Magnis dis parturient montes nascetur ridiculus mus mauris vitae ultricies. Adipiscing elit ut aliquam purus sit amet luctus venenatis lectus. Ultrices vitae auctor eu augue ut lectus arcu bibendum at. Odio euismod lacinia at quis risus sed vulputate odio ut. Cursus mattis molestie a iaculis at erat pellentesque adipiscing.'
 const aboutContent = 'Hac habitasse platea dictumst vestibulum rhoncus est pellentesque. Dictumst vestibulum rhoncus est pellentesque elit ullamcorper. Non diam phasellus vestibulum lorem sed. Platea dictumst quisque sagittis purus sit. Egestas sed sed risus pretium quam vulputate dignissim suspendisse. Mauris in aliquam sem fringilla. Semper risus in hendrerit gravida rutrum quisque non tellus orci. Amet massa vitae tortor condimentum lacinia quis vel eros. Enim ut tellus elementum sagittis vitae. Mauris ultrices eros in cursus turpis massa tincidunt dui.'
@@ -21,27 +25,27 @@ const posts = []
 
 //root route method , rendering posts[] on home page
 app.get('/', (req, res) => {
-  res.render('home', 
-  { 
-    homeContent: homeStartingContent, 
-    posts 
-  })
+  res.render('home',
+    {
+      homeContent: homeStartingContent,
+      posts
+    })
 })
 
 //about route, with some static contents 
 app.get('/about', (req, res) => {
-  res.render('about', 
-    { 
+  res.render('about',
+    {
       aboutContent
     })
 })
 
 //contact route with static content
 app.get('/contact', (req, res) => {
-  res.render('contact', 
-  { 
-    contactContent 
-  })
+  res.render('contact',
+    {
+      contactContent
+    })
 })
 
 //compose route 
@@ -66,16 +70,17 @@ app.get('/posts/:postID', (req, res) => {
   let postTitle = req.params.postID
 
   let title = ''
-  posts.forEach((post) =>{
+  
+  posts.forEach((post) => {
     title = post.title
   })
 
-  if (postTitle == title){
+  if (_.toLower(postTitle) == _.toLower(title)) {
     console.log("Match Found!")
   }
 })
 
 // app .listen
-app.listen(3000, ()=> {
+app.listen(3000, () => {
   console.log('Server started on port 3000')
 })
